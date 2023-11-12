@@ -23,3 +23,5 @@ Currently, two official plugins are available:
 # this projects utilized a component/ pages folder structure
 
 where the pages are the different pages of the app, while the components are the several components contained in the pages
+
+# used react icons for the needed icons
