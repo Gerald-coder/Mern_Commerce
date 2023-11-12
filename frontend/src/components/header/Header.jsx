@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/Fi";
+import { RiMenu5Fill } from "react-icons/ri";
+import { FaTimes } from "react-icons/fa";
 
 export const Logo = (
   <div className={styles.logo}>
@@ -25,12 +28,38 @@ const cart = (
 const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+
+  const toggleBar = () => {
+    setToggleMenu(!toggleMenu);
+    console.log(toggleMenu);
+  };
+  const hideToggle = () => {
+    setToggleMenu(false);
+  };
+
   return (
     <header>
       <div className={styles.header}>
         {Logo}{" "}
-        <nav>
+        <nav
+          className={
+            toggleMenu ? `${styles["show-nav"]}` : `${styles["hide-nav"]}`
+          }
+        >
+          <div
+            className={
+              toggleMenu
+                ? `${styles["nav-wrapper"]} ${styles["show-nav-wrapper"]}`
+                : `${styles["nav-wrapper"]}`
+            }
+            onClick={hideToggle}
+          ></div>
           <ul>
+            <li className={styles["logo-mobile"]}>
+              {Logo}
+              <FaTimes size={20} color="white" onClick={hideToggle} />
+            </li>
             <li>
               <NavLink to="/shop" className={activeLink}>
                 Store
@@ -52,6 +81,10 @@ const Header = () => {
             {cart}
           </div>
         </nav>
+        <div className={styles["menu-icon"]}>
+          {cart}
+          <RiMenu5Fill size={25} onClick={toggleBar} />
+        </div>
       </div>
     </header>
   );
