@@ -38,12 +38,14 @@ body {
 section {
   width: 100%;
   padding: 4rem 0;
+  /* border: 2px solid green ; */
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+  /* border: 2px solid red; */
 }
 
 /* UTILITY CLASSES */
