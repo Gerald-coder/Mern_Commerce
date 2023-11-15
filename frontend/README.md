@@ -27,3 +27,5 @@ where the pages are the different pages of the app, while the components are the
 # used react icons for the needed icons
 
 # used imgbb for storing images and created account with them also, with geraldpaulson28 email
+
+# the carousal was built using react multi carousal
