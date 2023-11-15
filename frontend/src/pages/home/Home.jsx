@@ -1,6 +1,9 @@
 import React from "react";
 import Slider from "../../components/slider/Slider";
 import HomeInfo from "../../components/homeInfo/HomeInfo";
+import { productData } from "../../components/carousel/data";
+import ProductCarousel from "../../components/carousel/Carousel";
+import CarouselItem from "../../components/carousel/CarouselItem";
 
 export function ProductHeading({ heading, btnText }) {
   return (
@@ -14,6 +17,19 @@ export function ProductHeading({ heading, btnText }) {
   );
 }
 
+const products = productData.map((product) => {
+  return (
+    <div key={product.id}>
+      <CarouselItem
+        description={product.description}
+        name={product.name}
+        price={product.price}
+        url={product.imageurl}
+      />
+    </div>
+  );
+});
+
 function Home() {
   return (
     <>
@@ -22,6 +38,7 @@ function Home() {
         <div className="container">
           <HomeInfo />
           <ProductHeading heading={"Recent Products"} btnText={"Buy now>>>>"} />
+          <ProductCarousel products={products} />
         </div>
       </section>
     </>
