@@ -1,7 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { shortenText } from "../../utils";
 import "./Carousel.scss";
+import PropTypes from "prop-types";
+
 shortenText;
 
 function CarouselItem({ url, name, price, description }) {
@@ -17,5 +18,12 @@ function CarouselItem({ url, name, price, description }) {
     </div>
   );
 }
+
+CarouselItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 export default CarouselItem;

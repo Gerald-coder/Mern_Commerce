@@ -1,7 +1,7 @@
-import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsive } from "./data";
+import PropTypes from "prop-types";
 
 function ProductCarousel({ products }) {
   return (
@@ -21,4 +21,7 @@ function ProductCarousel({ products }) {
   );
 }
 
+ProductCarousel.propTypes = {
+  products: PropTypes.array.isRequired, // Change 'array' to the appropriate type
+};
 export default ProductCarousel;

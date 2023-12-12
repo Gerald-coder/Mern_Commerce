@@ -1,9 +1,9 @@
-import React from "react";
 import Slider from "../../components/slider/Slider";
 import HomeInfo from "../../components/homeInfo/HomeInfo";
 import { productData } from "../../components/carousel/data";
 import ProductCarousel from "../../components/carousel/Carousel";
 import CarouselItem from "../../components/carousel/CarouselItem";
+import PropTypes from "prop-types";
 
 export function ProductHeading({ heading, btnText }) {
   return (
@@ -44,5 +44,10 @@ function Home() {
     </>
   );
 }
+
+ProductHeading.propTypes = {
+  heading: PropTypes.string.isRequired,
+  btnText: PropTypes.string.isRequired,
+};
 
 export default Home;
