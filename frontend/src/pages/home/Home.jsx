@@ -48,6 +48,13 @@ function Home() {
           <ProductCategory />
         </div>
       </section>
+      <section>
+        <div className="container">
+          <HomeInfo />
+          <ProductHeading heading={"Mobile Phones"} btnText={"Buy now>>>>"} />
+          <ProductCarousel products={products} />
+        </div>
+      </section>
     </>
   );
 }
