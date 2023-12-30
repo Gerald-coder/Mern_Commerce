@@ -28,6 +28,8 @@ export const data = [
   },
 ];
 
+/* eslint-disable */
+
 const HomeInfoBox = ({ icon, heading, text }) => {
   return (
     <div className="infoboxes --mb2">
