@@ -4,6 +4,7 @@ import { productData } from "../../components/carousel/data";
 import ProductCarousel from "../../components/carousel/Carousel";
 import CarouselItem from "../../components/carousel/CarouselItem";
 import PropTypes from "prop-types";
+import ProductCategory from "../../components/homeInfo/productCategory";
 
 export function ProductHeading({ heading, btnText }) {
   return (
@@ -39,6 +40,12 @@ function Home() {
           <HomeInfo />
           <ProductHeading heading={"Recent Products"} btnText={"Buy now>>>>"} />
           <ProductCarousel products={products} />
+        </div>
+      </section>
+      <section className="--bg-grey">
+        <div className="container">
+          <h3>Category</h3>
+          <ProductCategory />
         </div>
       </section>
     </>
