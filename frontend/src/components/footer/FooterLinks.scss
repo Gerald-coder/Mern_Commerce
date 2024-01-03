@@ -50,7 +50,7 @@
 }
 
 .contact h2 {
-  font-size: 5rem;
+  font-size: clamp(3rem, 4vw, 5rem);
   font-weight: 700;
   color: #fff;
 }
@@ -109,18 +109,12 @@
 }
 
 .logo a h2 {
+  font-size: 2rem;
   width: 25%;
   color: #fff;
   cursor: pointer;
   span {
     color: orangered;
-  }
-}
-
-.footer-logo {
-  width: 50%;
-  img {
-    width: 100%;
   }
 }
 
@@ -164,6 +158,6 @@
   }
 
   .contact > * {
-    margin: 3rem 0;
+    margin: 2rem 0;
   }
 }
