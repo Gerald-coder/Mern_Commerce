@@ -5,6 +5,7 @@ import ProductCarousel from "../../components/carousel/Carousel";
 import CarouselItem from "../../components/carousel/CarouselItem";
 import PropTypes from "prop-types";
 import ProductCategory from "../../components/homeInfo/productCategory";
+import FooterLinks from "../../components/footer/FooterLinks";
 
 export function ProductHeading({ heading, btnText }) {
   return (
@@ -55,6 +56,7 @@ function Home() {
           <ProductCarousel products={products} />
         </div>
       </section>
+      <FooterLinks />
     </>
   );
 }
