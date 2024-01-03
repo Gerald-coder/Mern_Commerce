@@ -60,31 +60,31 @@ function FooterLinks() {
           <div className="footer-logo">{Logo}</div>
           <NavLinks
             heading={"Feature"}
-            one={"Link Shortening"}
-            two={"Branded Links"}
-            three={"Analytics"}
+            one={"Swift Delivery"}
+            two={"Customer Based"}
+            three={"Trusted By"}
             four={"Blog"}
           />
           <NavLinks
             heading={"Resources"}
-            one={"Blog"}
-            two={"Developer"}
+            one={"Address"}
+            two={"Contact Us"}
             three={"Support"}
-            four={"Docs"}
+            four={"Q&A Section"}
           />
           <NavLinks
             heading={"Companies"}
-            one={"About"}
-            two={"Our Team"}
-            three={"Carrier"}
-            four={"Contact"}
+            one={"Douglas"}
+            two={"Ikeja"}
+            three={"WOrld Bank"}
+            four={"Priceless"}
           />
           <NavLinks
             heading={"Partners"}
-            one={"About"}
-            two={"Our Team"}
-            three={"Carrier"}
-            four={"Contact"}
+            one={"Amazon"}
+            two={"Konga"}
+            three={"Jumia"}
+            four={"Ali"}
           />
         </div>
       </section>
