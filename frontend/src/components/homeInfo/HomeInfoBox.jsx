@@ -30,7 +30,7 @@ export const data = [
 
 /* eslint-disable */
 
-const HomeInfoBox = ({ icon, heading, text }) => {
+const HomeInfoBox = () => {
   return (
     <div className="infoboxes --mb2">
       {data.map((item, index) => {

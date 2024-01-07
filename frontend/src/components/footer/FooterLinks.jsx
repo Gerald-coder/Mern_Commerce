@@ -76,7 +76,7 @@ function FooterLinks() {
             heading={"Companies"}
             one={"Douglas"}
             two={"Ikeja"}
-            three={"WOrld Bank"}
+            three={"World Bank"}
             four={"Priceless"}
           />
           <NavLinks

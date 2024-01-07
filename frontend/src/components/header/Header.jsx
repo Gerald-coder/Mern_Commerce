@@ -29,17 +29,27 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [scrollPage, setScrollPage] = useState(false);
+
+  const navScroll = () => {
+    if (window.scrollY > 900) {
+      setScrollPage(true);
+    }
+    setScrollPage(true);
+  };
+
+  window.addEventListener("scroll", navScroll);
 
   const toggleBar = () => {
     setToggleMenu(!toggleMenu);
-    console.log(toggleMenu);
+    // console.log(toggleMenu);
   };
   const hideToggle = () => {
     setToggleMenu(false);
   };
 
   return (
-    <header>
+    <header className={scrollPage ? `${styles.fixed}` : ""}>
       <div className={styles.header}>
         {Logo}{" "}
         <nav
