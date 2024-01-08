@@ -8,9 +8,23 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:5174/", "https://ecommerce-app.vercel.app"],
+    credentials: true,
+  })
+);
+
 // Routes
 app.get("/", (req, res) => {
   res.send("hello world");
+});
+app.post("/users", (req, res) => {
+  res.send("sending data to my API");
 });
 
 mongoose
