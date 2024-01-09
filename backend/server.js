@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
@@ -20,12 +21,16 @@ app.use(
 );
 
 // Routes
+app.use("/api/users", require("./routes/userRoute"));
 app.get("/", (req, res) => {
   res.send("hello world");
 });
 app.post("/users", (req, res) => {
   res.send("sending data to my API");
 });
+
+//error middleware
+app.use(errorHandler);
 
 mongoose
   .connect(process.env.MONGO_URI)
