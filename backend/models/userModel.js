@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { objectId } = mongoose.Schema;
+const bycrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -41,6 +42,17 @@ const userSchema = mongoose.Schema({
     type: Object,
     // address, state, country
   },
+});
+
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  // hash password
+  const salt = await bycrypt.genSalt(10);
+  const hashedpassword = await bycrypt.hash(this.password, salt);
+  this.password = hashedpassword;
+  next();
 });
 
 module.exports = mongoose.model("Users", userSchema);
