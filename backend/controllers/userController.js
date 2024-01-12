@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const asyncHandler = require("express-async-handler");
 const Users = require("../models/userModel");
 const jwt = require("jsonwebtoken");
@@ -19,12 +21,13 @@ const registerUser = asyncHandler(async (req, res, next) => {
   }
   // check if users exists
   const userExists = await Users.findOne({ email });
+
   if (userExists) {
     res.status(400);
     throw new Error("user already exists");
   }
 
-  const hashedPassword = await bycrypt.hash(password, 10);
+  // const hashedPassword = await bycrypt.hash(password, 10);
 
   // validate user
   const user = await Users.create({ name, email, password });
@@ -49,4 +52,38 @@ const registerUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { registerUser };
+const loginUser = asyncHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // validate user
+  if (!email | password) {
+    res.status(400);
+    throw new Error("please provide the required detials");
+  }
+
+  // check if user exits
+  const user = await Users.findOne({ email });
+
+  // check if password ids correct
+  const matchPwd = await bycrypt.compare(password, user.password);
+
+  //generate token
+  const token = generateToken(user._id);
+
+  if (user && matchPwd) {
+    const newUser = await Users.findOne({ email }).select("-password");
+    res.cookie("jwtToken", token, {
+      path: "/",
+      httpOnly: true,
+      // sameSite: 'none',
+      // secure: true
+      expires: new Date(Date.now() + 1000 * 86400),
+    });
+
+    res.status(201).json(newUser);
+  }
+  res.status(400);
+  throw new Error("User seems not to be found");
+});
+
+module.exports = { registerUser, loginUser };
