@@ -63,6 +63,10 @@ const loginUser = asyncHandler(async (req, res, next) => {
 
   // check if user exits
   const user = await Users.findOne({ email });
+  if (!user) {
+    res.status(400);
+    throw new Error("user does not exist");
+  }
 
   // check if password ids correct
   const matchPwd = await bycrypt.compare(password, user.password);
