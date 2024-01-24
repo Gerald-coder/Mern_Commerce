@@ -52,6 +52,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
   }
 });
 
+//login
 const loginUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -90,4 +91,29 @@ const loginUser = asyncHandler(async (req, res, next) => {
   throw new Error("User seems not to be found");
 });
 
-module.exports = { registerUser, loginUser };
+// logout
+
+const logout = asyncHandler(async (req, res, next) => {
+  res.cookie("jwtToken", "", {
+    path: "/",
+    httpOnly: true,
+    // sameSite: "none",
+    // secure: true,
+    expires: new Date(0),
+  });
+
+  return res.status(204).json({ message: "user is successfully logged out" });
+});
+
+// getUser
+
+const getUser = asyncHandler(async (req, res, next) => {
+  const { name } = req.body;
+  const user = await Users.findOne({ name });
+  if (!user) {
+    return res.status(204).json({ message: "user does not exist" });
+  }
+
+  res.status(200).json(user);
+});
+module.exports = { registerUser, loginUser, logout, getUser };
