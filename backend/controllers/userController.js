@@ -121,6 +121,7 @@ const getUser = asyncHandler(async (req, res) => {
 const getLoginStatus = asyncHandler(async (req, res) => {
   // const token = req.cookies.jwtToken;
   // return res.send(Boolean(token));
+  // my solution of the program below
 
   const token = req.cookies.jwtToken;
   if (!token) {
@@ -133,4 +134,44 @@ const getLoginStatus = asyncHandler(async (req, res) => {
   return res.json(false);
 });
 
-module.exports = { registerUser, loginUser, logout, getUser, getLoginStatus };
+//update user details
+const updateUserDetails = asyncHandler(async (req, res) => {
+  // get user details from client
+  const {
+    email: newEmail,
+    name: newName,
+    photo: newPhoto,
+    phone: newPhone,
+    address: newAddress,
+  } = req.body;
+
+  console.log(newAddress, newEmail);
+  // find user
+  const user = await Users.findOne({ _id: req.user.id });
+  // console.log(user);
+  //validate user
+  if (!user) {
+    res.status(400);
+    throw new Error("this user no dey around ohh");
+  }
+  // update user
+  // get existing user details
+  const { email, name, photo, phone, address } = user;
+  user.email = newEmail || email;
+  user.name = newName || name;
+  user.photo = newPhoto || photo;
+  user.phone = newPhone || phone;
+  user.address = newAddress || address;
+
+  const newUser = await user.save();
+  res.status(200).json(newUser);
+});
+
+module.exports = {
+  registerUser,
+  loginUser,
+  logout,
+  getUser,
+  getLoginStatus,
+  updateUserDetails,
+};
