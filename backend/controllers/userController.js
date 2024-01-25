@@ -102,18 +102,18 @@ const logout = asyncHandler(async (req, res, next) => {
     expires: new Date(0),
   });
 
-  return res.status(204).json({ message: "user is successfully logged out" });
+  return res.status(200).json({ message: "user is successfully logged out" });
 });
 
 // getUser
 
-const getUser = asyncHandler(async (req, res, next) => {
-  const { name } = req.body;
-  const user = await Users.findOne({ name });
+const getUser = asyncHandler(async (req, res) => {
+  //  before you get a user, you need to make sure that the usr is logged in first, if the user is logged in, the nwe can send the full user data to that user
+  const user = await Users.findById(req.user._id).select("-password");
   if (!user) {
-    return res.status(204).json({ message: "user does not exist" });
+    res.status(400);
+    throw new Error("emy, we no see this person oh");
   }
-
   res.status(200).json(user);
 });
 module.exports = { registerUser, loginUser, logout, getUser };
