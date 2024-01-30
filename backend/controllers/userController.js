@@ -156,17 +156,30 @@ const updateUserDetails = asyncHandler(async (req, res) => {
   }
   // update user
   // get existing user details
-  const { email, name, photo, phone, address } = user;
-  user.email = newEmail || email;
-  user.name = newName || name;
-  user.photo = newPhoto || photo;
-  user.phone = newPhone || phone;
-  user.address = newAddress || address;
+  const { email, name, phone, address } = user;
+  user.email = newEmail ? newEmail : email;
+  user.name = newName ? newName : name;
+  user.phone = newPhone ? newPhone : phone;
+  user.address = newAddress ? newAddress : address;
 
   const newUser = await user.save();
   res.status(200).json(newUser);
 });
 
+// updateUserPhoto
+const updateUserPhoto = asyncHandler(async (req, res) => {
+  const { photo: userPhoto } = req.body;
+
+  const user = await Users.findOne({ _id: req.user.id });
+  if (!user) {
+    res.status(400);
+    throw new Error("User not found, cant update profile photo");
+  }
+  const { photo } = user;
+  user.photo = photo ? userPhoto : photo;
+  const updateUserPhoto = await user.save();
+  res.status(200).json(updateUserPhoto);
+});
 module.exports = {
   registerUser,
   loginUser,
@@ -174,4 +187,5 @@ module.exports = {
   getUser,
   getLoginStatus,
   updateUserDetails,
+  updateUserPhoto,
 };

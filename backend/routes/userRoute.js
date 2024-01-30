@@ -7,6 +7,7 @@ const {
   getUser,
   getLoginStatus,
   updateUserDetails,
+  updateUserPhoto,
 } = require("../controllers/userController");
 const { protect } = require("../middlewares/authMiddleware");
 
@@ -16,5 +17,6 @@ router.get("/logout", logout);
 router.get("/getuser", protect, getUser);
 router.get("/getloginstatus", getLoginStatus);
 router.patch("/updatedetails", protect, updateUserDetails);
+router.patch("/updateuserphoto", protect, updateUserPhoto);
 
 module.exports = router;
